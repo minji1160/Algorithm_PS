@@ -20,3 +20,10 @@ int solution(vector<int> nums){
     }
     return max;
 }
+
+/*
+int solution(vector<int> nums) {
+    unordered_set<int> s(nums.begin(), nums.end()); // 미친듯
+    return min(nums.size() / 2, s.size());
+}
+*/
