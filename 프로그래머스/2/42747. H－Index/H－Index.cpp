@@ -6,7 +6,12 @@
 using namespace std;
 int solution(vector<int> citations) {
     int answer = 0;
-    map<int, int, greater<int>> ci_map;
+    sort(citations.begin(), citations.end(), greater<int>());
+    for(int i = 0; i < citations.size(); i++){
+        if(citations[i] < i + 1) return i;
+    }
+    answer = citations.size();
+    /*map<int, int, greater<int>> ci_map;
     for(auto ci : citations){
         ci_map[ci]++;
     }
@@ -24,6 +29,6 @@ int solution(vector<int> citations) {
         else{
             answer = sum;
         }
-    }
+    }*/
     return answer;
 }
