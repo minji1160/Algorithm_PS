@@ -54,7 +54,7 @@ vector<int> m[110]
 
 int dfs(int togo, int now, int count){
     for(int i = 0; i < m[now].size(); i++){
-        if(m[now][1] != togo) count = dfs(now, m[mow][i], count +1);
+        if(m[now][i] != togo) count = dfs(now, m[now][i], count +1);
     }
     return count;
 }
