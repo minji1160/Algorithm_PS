@@ -39,10 +39,36 @@ int solution(int n, vector<vector<int>> wires) {
             }
             idx++;
         }
-        int dif = (A.size()>B.size())? A.size()-B.size() : B.size() - A.size();
-        answer = min(answer, dif);
+        answer = min(answer, abs(A.size() - B.size()));
         A.clear();
         B.clear();
     }
     return answer;
 }
+
+
+/*
+[dfs 사용 풀이]
+
+vector<int> m[110]
+
+int dfs(int togo, int now, int count){
+    for(int i = 0; i < m[now].size(); i++){
+        if(m[now][1] != togo) count = dfs(now, m[mow][i], count +1);
+    }
+    return count;
+}
+
+int solution(int n, vector<vector<int>> wires){
+    int answer = 110;
+    for(auto wire : wires){
+        m[wire[0]].push_back(wire[1]);
+        m[wire[1]].push_back(wire[0]);
+    }
+    for(auto wire : wires){
+        int sum = dfs(wire[0], wire[1], 1);
+        int dif = n-(2*sum);
+        answer = min(answer, abs(dif));
+    }
+}
+*/
