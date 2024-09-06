@@ -44,3 +44,7 @@ int solution(vector<vector<int>> maps)
     answer = visit[row-1][col-1]? visit[row-1][col-1] : -1;
     return answer;
 }
+
+/*
+왜... 1차원 배열에 바로 넣으면 효율성 0점이고 벡터쓰면 100점인데... 너가 뭘알아
+*/
