@@ -11,8 +11,7 @@ void max_way(vector<vector<int>> &tri, int cur_depth, int depth){
     for(int i = 0; i < tri[cur_depth].size(); i++){
            tri[cur_depth][i] += max(tri[cur_depth+1][i], tri[cur_depth+1][i+1]);
            //cout << "tri " << cur_depth << " " << i << " update " << tri[cur_depth][i] << endl;
-       }
-   
+    }  
 }
 
 int solution(vector<vector<int>> triangle) {
