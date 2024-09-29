@@ -1,8 +1,5 @@
 #include <string>
 #include <vector>
-#include <algorithm>
-#include <queue>
-#include <iostream>
 
 using namespace std;
 
@@ -23,11 +20,11 @@ int solution(int n, vector<vector<int>> results) {
     for(int i = 1; i <= n; i++){
         int cnt = 1;
         for(int j = 1; j <= n; j++){
-            if(i == j) continue;
             if(graph[i][j] || graph[j][i]) cnt++;
         }
         if(cnt == n) answer++;
-        cnt = 1;
     }
     return answer;
 }
+
+// Floyd Warshall 공부하기..!!!!
