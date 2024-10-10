@@ -1,5 +1,5 @@
 #include<iostream>
-#include<cmath>
+#include <cmath>
 using namespace std;
 
 bool isPrime(int n) {
@@ -9,14 +9,20 @@ bool isPrime(int n) {
 	return true;
 }
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
 	int M, N;
 	cin >> M >> N;
-    M = (M == 1) ? 2 : M;
+	bool* primes = new bool[N + 1];
+	for (int i = 0; i <= N; i++) {
+		primes[i] = true;
+	}
+	M = (M == 1) ? 2 : M;
 	for (int i = M; i <= N; i++) {
-		if (isPrime(i)) cout << i << "\n";
+		if (!primes[i]) continue;
+		if (isPrime(i)) {
+			cout << i << "\n";
+			for (int j = i * 2; j <= N; j += i)
+				primes[j] = false;
+		}
 	}
 	return 0;
 }
