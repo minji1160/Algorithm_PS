@@ -1,16 +1,5 @@
 #include <iostream>
 using namespace std;
-
-int primes[1000000] = { 0, };
-
-void set(bool arr[]) {
-	for (int i = 2; i * i < 1000000; i++) {
-		if (arr[i]) continue;
-		for (int j = i*i; j < 1000000; j += i)
-			arr[j] = true;
-	}
-}
-
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
