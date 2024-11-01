@@ -1,35 +1,41 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <stack>
 using namespace std;
 
 int main() {
 	int n, A;
 	int arr[1000] = { 0, };
 	vector<int> dp_arr[1000];
+	int dp[1000] = { 0, };
+	stack<int> seq;
 	int max_idx = 0;
+	int max_length = 0;
 	cin >> n;
 	for (int i = 0; i < n; i++) {
 		cin >> arr[i];
-	}
-	vector<int>dp;
-	for (int i = 0; i < n; i++) {
-		dp_arr[i] = dp;
+		dp[i] = 1;
 		for (int j = 0; j < i; j++) {
-			if (arr[i] > arr[j]) {
-				if (dp_arr[i].size() < dp_arr[j].size())
-					dp_arr[i] = dp_arr[j];
-			}
+			if (arr[i] > arr[j]) dp[i] = max(dp[i], dp[j]+1);
 		}
-		dp_arr[i].push_back(arr[i]);
-		dp.clear();
-	}
-	for (int i = 0; i < n; i++) {
-		if (dp_arr[i].size() > dp_arr[max_idx].size())
+		if (max_length < dp[i]) {
+			max_length = dp[i];
 			max_idx = i;
+		}
 	}
-	cout << dp_arr[max_idx].size() << "\n";
-	for (auto a : dp_arr[max_idx])
-		cout << a << " ";
+	seq.push(arr[max_idx]);
+	int curidx = max_idx;
+	for (int i = max_idx - 1; i >= 0; i--) {
+		if (dp[curidx] - 1 == dp[i] && arr[curidx] > arr[i]) {
+			seq.push(arr[i]);
+			curidx = i;
+		}
+	}
+	cout << max_length << '\n';
+	while (!seq.empty()) {
+		cout << seq.top() << ' ';
+		seq.pop();
+	}
 	return 0;
 }
