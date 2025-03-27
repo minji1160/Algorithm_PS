@@ -12,34 +12,26 @@ int square(int x, int y) {
     return (x / 3) * 3 + (y / 3);
 }
 bool go(int z) {
-    cnt += 1;
-    if (cnt >= 10000000) {
-        return true;
-    }
     if (z == 81) {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 cout << a[i][j];
             }
-            cout << '\n';
+            cout << "\n";
         }
         return true;
     }
     int x = z / n;
     int y = z % n;
-    if (a[x][y] != 0) {
-        return go(z + 1);
-    }
+    if (a[x][y] != 0) return go(z + 1);
     else {
-        for (int i = 1; i <= 9; i++) {
-            if (c[x][i] == 0 && c2[y][i] == 0 && c3[square(x, y)][i] == 0) {
+        for (int i = 1; i <= n; i++) {
+            if (c[x][i] == 0 && c2[y][i]==0 && c3[square(x, y)][i]==0) {
                 c[x][i] = c2[y][i] = c3[square(x, y)][i] = true;
                 a[x][y] = i;
-                if (go(z + 1)) {
-                    return true;
-                }
-                a[x][y] = 0;
+                if (go(z + 1)) return true;
                 c[x][i] = c2[y][i] = c3[square(x, y)][i] = false;
+                a[x][y] = 0;
             }
         }
     }
