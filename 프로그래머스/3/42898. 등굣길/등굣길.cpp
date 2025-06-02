@@ -28,7 +28,6 @@ int solution(int m, int n, vector<vector<int>> puddles) {
                 way[i][j] = way[i-1][j] + way[i][j-1];
                 way[i][j] %= 1000000007;
             }
-            //cout << "way" << i << j << " is " << way[i][j] << '\n';
         }
     }
     return answer = way[m-1][n-1];
